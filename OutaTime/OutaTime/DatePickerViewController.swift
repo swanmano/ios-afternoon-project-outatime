@@ -17,12 +17,14 @@ class DatePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
     }
     
     // MARK: Actions
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func doneTapped(_ sender: UIBarButtonItem) {
     }
     

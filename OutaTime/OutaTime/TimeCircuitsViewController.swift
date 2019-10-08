@@ -16,10 +16,19 @@ class TimeCircuitsViewController: UIViewController {
     @IBOutlet weak var departedLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
     
+    // MARK: Properties
+    var currentTime = Date()
+    var dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd, yyyy"
+        formatter.timeZone = TimeZone(abbreviation: "CDT")
+        return formatter
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateViews()
 
     }
     
@@ -39,5 +48,12 @@ class TimeCircuitsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    private func updateViews() {
+        presentLabel.text = string(from: currentTime)
+    }
+    
+    private func string(from dateEntry: Date) -> String {
+        return dateFormatter.string(from: dateEntry)
+    }
 
 }
