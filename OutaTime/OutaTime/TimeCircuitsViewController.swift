@@ -9,11 +9,24 @@
 import UIKit
 
 class TimeCircuitsViewController: UIViewController {
+    
+    // MARK: Outlets
+    @IBOutlet weak var destinationLabel: UILabel!
+    @IBOutlet weak var presentLabel: UILabel!
+    @IBOutlet weak var departedLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+    }
+    
+    // MARK: Actions
+    @IBAction func setDestinationButtonTapped(_ sender: UIButton) {
+    }
+    @IBAction func trabelBackButtonTapped(_ sender: UIButton) {
     }
     
 
