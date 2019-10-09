@@ -93,42 +93,47 @@
                                     <constraint firstItem="ggD-nR-H0R" firstAttribute="centerX" secondItem="MdN-n2-LIk" secondAttribute="centerX" id="wtC-sh-JKr"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ksy-hY-OJb">
-                                <rect key="frame" x="97" y="758" width="220" height="84"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ksy-hY-OJb">
+                                <rect key="frame" x="15" y="758" width="384" height="84"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRt-Cl-3yO">
-                                        <rect key="frame" x="0.0" y="0.0" width="220" height="36"/>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRt-Cl-3yO">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="36"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <state key="normal" title="SET DESTINATION TIME">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="setDestinationButtonTapped:" destination="6Ws-bF-PQU" eventType="touchUpInside" id="yHL-AT-Bgp"/>
                                             <segue destination="gNW-gu-11Y" kind="presentation" identifier="ModalDestinationDatePickerSegue" id="Hfk-tb-hZB"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3e-uI-y2W">
-                                        <rect key="frame" x="45" y="48" width="130" height="36"/>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3e-uI-y2W">
+                                        <rect key="frame" x="0.0" y="48" width="384" height="36"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <state key="normal" title="TRAVEL BACK">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="travelBackButtonTapped:" destination="6Ws-bF-PQU" eventType="touchUpInside" id="Scs-6b-qW9"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HRS-So-9jT" firstAttribute="trailing" secondItem="t4W-oL-qNG" secondAttribute="trailing" constant="25" id="0qs-LP-cAb"/>
+                            <constraint firstItem="HRS-So-9jT" firstAttribute="trailing" secondItem="Ksy-hY-OJb" secondAttribute="trailing" constant="15" id="3ch-Pu-4WI"/>
                             <constraint firstItem="Ksy-hY-OJb" firstAttribute="centerX" secondItem="RKB-m2-5ew" secondAttribute="centerX" id="3mS-sT-Ydz"/>
                             <constraint firstItem="t4W-oL-qNG" firstAttribute="centerX" secondItem="RKB-m2-5ew" secondAttribute="centerX" id="4VJ-8s-Pvz"/>
                             <constraint firstItem="Ksy-hY-OJb" firstAttribute="top" relation="lessThanOrEqual" secondItem="MdN-n2-LIk" secondAttribute="bottom" constant="190" id="DKR-7I-Y5i"/>
                             <constraint firstItem="t4W-oL-qNG" firstAttribute="leading" secondItem="HRS-So-9jT" secondAttribute="leading" constant="25" id="Da6-WF-KuT"/>
                             <constraint firstItem="Ksy-hY-OJb" firstAttribute="top" relation="lessThanOrEqual" secondItem="t4W-oL-qNG" secondAttribute="bottom" constant="140" id="Kfj-es-69n"/>
                             <constraint firstItem="HRS-So-9jT" firstAttribute="bottom" secondItem="Ksy-hY-OJb" secondAttribute="bottom" constant="20" id="LZq-IO-drW"/>
+                            <constraint firstItem="Ksy-hY-OJb" firstAttribute="leading" secondItem="HRS-So-9jT" secondAttribute="leading" constant="15" id="eW5-rb-Ooq"/>
                             <constraint firstItem="MdN-n2-LIk" firstAttribute="top" secondItem="HRS-So-9jT" secondAttribute="top" constant="50" id="nfV-Kj-cGy"/>
                             <constraint firstItem="t4W-oL-qNG" firstAttribute="top" secondItem="HRS-So-9jT" secondAttribute="top" constant="80" id="uAa-wZ-GTG"/>
                             <constraint firstItem="MdN-n2-LIk" firstAttribute="centerX" secondItem="RKB-m2-5ew" secondAttribute="centerX" id="y3b-N9-PWO"/>

@@ -27,11 +27,13 @@ class TimeCircuitsViewController: UIViewController {
     
     var speed: Int = 0
     var lastDeparted: Date? = nil
+    var destination: Date?
     var timer: Timer?
-    var stopTime: Int = 88 // changed this to Int from Date
+    var stopTime: Int = 88
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
         updateViews()
 
     }
@@ -54,8 +56,10 @@ class TimeCircuitsViewController: UIViewController {
 
     // MARK: Methods
     private func updateViews() {
+        guard let destination = destination else { return }
         presentLabel.text = string(from: currentTime)
         speedLabel.text = String("\(speed) MPH")
+        destinationLabel.text = string(from: destination)
         if let lastDeparted = lastDeparted {
             departedLabel.text = string(from: lastDeparted)
         } else {
@@ -71,12 +75,17 @@ class TimeCircuitsViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: updateSpeed(timer:))
     }
     
+    // update the speed until the speed equals the stopTime of 88
+    // when the speed reaches 88, stop the timer, adjust the labels, and show an alert.
     private func updateSpeed(timer: Timer) {
         if speed < stopTime {
             speed += 2
             updateViews()
         } else {
             resetTimer()
+            speed = 0
+            departedLabel.text = presentLabel.text
+            presentLabel.text = destinationLabel.text
         }
     }
     
@@ -88,7 +97,7 @@ class TimeCircuitsViewController: UIViewController {
 
 extension TimeCircuitsViewController: DatePickerDelegate {
     func destinationDateWasChosen(_ date: Date) {
-        destinationLabel.text = string(from: date)
+        destination = date
         updateViews()
     }
 }
