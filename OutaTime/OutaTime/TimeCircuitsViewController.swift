@@ -18,6 +18,13 @@ class TimeCircuitsViewController: UIViewController {
     
     // MARK: Properties
     var currentTime = Date()
+    var speed: Int = 0
+    var lastDeparted: Date? = nil
+    var destination: Date?
+    var timer: Timer?
+    var stopTime: Int = 88  // hard coded the critical speed for the Delorean
+
+    // format the three date labels
     var dateFormatter: DateFormatter = {
        let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"
@@ -25,12 +32,7 @@ class TimeCircuitsViewController: UIViewController {
         return formatter
     }()
     
-    var speed: Int = 0
-    var lastDeparted: Date? = nil
-    var destination: Date?
-    var timer: Timer?
-    var stopTime: Int = 88
-
+    // include the metal looking background in the VC
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
@@ -56,21 +58,27 @@ class TimeCircuitsViewController: UIViewController {
 
     // MARK: Methods
     private func updateViews() {
-        guard let destination = destination else { return }
+        // set presentLabel to the formatted current time
         presentLabel.text = string(from: currentTime)
+        // set the speedLabel to the calculated speed
         speedLabel.text = String("\(speed) MPH")
-        destinationLabel.text = string(from: destination)
+        //set the departed label to dashes if nil or a formatted date if not nil
         if let lastDeparted = lastDeparted {
             departedLabel.text = string(from: lastDeparted)
         } else {
             departedLabel.text = "--- -- ----"
         }
+        // set the destination label to a formatted date if not nil
+        guard let destination = destination else { return }
+            destinationLabel.text = string(from: destination)
     }
     
+    // format the dates into a string
     private func string(from dateEntry: Date) -> String {
         return dateFormatter.string(from: dateEntry)
     }
     
+    // set the timer to update the speed label ever tenth of a second
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: updateSpeed(timer:))
     }
@@ -84,14 +92,24 @@ class TimeCircuitsViewController: UIViewController {
         } else {
             resetTimer()
             speed = 0
+            speedLabel.text = String("\(speed) MPH")
             departedLabel.text = presentLabel.text
             presentLabel.text = destinationLabel.text
+            showAlert()
         }
     }
     
     func resetTimer() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func showAlert() {
+        guard let destination = destination else { return }
+        let alert = UIAlertController(title: "Time Travel Successful", message: "Congratulations time traveler! Your new date is \(string(from: destination))", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Let's get Biff!", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
