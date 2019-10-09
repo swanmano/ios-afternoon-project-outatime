@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol DatePickerDelegate {
+    func destinationDateWasChosen(_ date: Date)
+}
+
 class DatePickerViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    // MARK: Properties
+    var delegate: DatePickerDelegate?
     
 
     override func viewDidLoad() {
