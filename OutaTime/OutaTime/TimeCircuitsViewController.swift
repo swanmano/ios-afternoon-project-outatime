@@ -24,7 +24,8 @@ class TimeCircuitsViewController: UIViewController {
         formatter.timeZone = TimeZone(abbreviation: "CDT")
         return formatter
     }()
-    
+    var speed: Int = 0
+    var lastDeparted: Date? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,12 @@ class TimeCircuitsViewController: UIViewController {
     */
     private func updateViews() {
         presentLabel.text = string(from: currentTime)
+        speedLabel.text = String("\(speed) MPH")
+        if let lastDeparted = lastDeparted {
+            departedLabel.text = string(from: lastDeparted)
+        } else {
+            departedLabel.text = "--- -- ----"
+        }
     }
     
     private func string(from dateEntry: Date) -> String {
