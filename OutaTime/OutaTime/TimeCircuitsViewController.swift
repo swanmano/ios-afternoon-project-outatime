@@ -33,10 +33,19 @@ class TimeCircuitsViewController: UIViewController {
 
     }
     
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ModalDestinationDatePickerSegue" {
+            guard let datePickerVC = segue.destination as? DatePickerViewController else { fatalError() }
+            datePickerVC.delegate = self
+        }
+    }
+    
     // MARK: Actions
     @IBAction func setDestinationButtonTapped(_ sender: UIButton) {
     }
-    @IBAction func trabelBackButtonTapped(_ sender: UIButton) {
+    @IBAction func travelBackButtonTapped(_ sender: UIButton) {
+        startTimer()
     }
     
 
@@ -54,5 +63,16 @@ class TimeCircuitsViewController: UIViewController {
     private func string(from dateEntry: Date) -> String {
         return dateFormatter.string(from: dateEntry)
     }
+    
+    private func startTimer() {
+        
+    }
+    
+}
 
+extension TimeCircuitsViewController: DatePickerDelegate {
+    func destinationDateWasChosen(_ date: Date) {
+        destinationLabel.text = string(from: date)
+        updateViews()
+    }
 }
