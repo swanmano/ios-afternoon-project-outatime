@@ -24,8 +24,26 @@ class TimeCircuitsViewController: UIViewController {
         formatter.timeZone = TimeZone(abbreviation: "CDT")
         return formatter
     }()
-    var speed: Int = 0
+    
+    var speedFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ss.S"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+    
+    var speed: TimeInterval = 0
     var lastDeparted: Date? = nil
+    var timer: Timer?
+    var stopTime: Date?
+    var timeRemaining: TimeInterval {
+        if let stopTime = stopTime {
+            let timeRemaining = stopTime.timeIntervalSinceNow
+            return timeRemaining
+        } else {
+            return 0
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +70,7 @@ class TimeCircuitsViewController: UIViewController {
     // MARK: Methods
     private func updateViews() {
         presentLabel.text = string(from: currentTime)
-        speedLabel.text = String("\(speed) MPH")
+        speedLabel.text = String("\(speedString(from: speed)) MPH")
         if let lastDeparted = lastDeparted {
             departedLabel.text = string(from: lastDeparted)
         } else {
@@ -63,9 +81,31 @@ class TimeCircuitsViewController: UIViewController {
     private func string(from dateEntry: Date) -> String {
         return dateFormatter.string(from: dateEntry)
     }
+    private func speedString(from speedEntry: TimeInterval) -> String {
+        let date = Date(timeIntervalSinceReferenceDate: speed)
+        return speedFormatter.string(from: date)
+    }
     
     private func startTimer() {
-        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: updateSpeed(timer:))
+        stopTime = Date(timeIntervalSinceNow: 8)
+    }
+    
+    private func updateSpeed(timer: Timer) {
+        if let stopTime = stopTime {
+            let currentTime = Date()
+            if currentTime <= stopTime {
+                speed = timeRemaining
+                updateViews()
+            } else {
+                resetTimer()
+            }
+        }
+    }
+    
+    func resetTimer() {
+        timer?.invalidate()
+        timer = nil
     }
     
 }
